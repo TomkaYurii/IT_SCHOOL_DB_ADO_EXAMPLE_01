@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IT_SCHOOL_DB_ADO_EXAMPLE_01", "IT_SCHOOL_DB_ADO_EXAMPLE_01\IT_SCHOOL_DB_ADO_EXAMPLE_01.csproj", "{BF4DB482-14C0-44B8-897A-BD60DBFF607B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF4DB482-14C0-44B8-897A-BD60DBFF607B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4DB482-14C0-44B8-897A-BD60DBFF607B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4DB482-14C0-44B8-897A-BD60DBFF607B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4DB482-14C0-44B8-897A-BD60DBFF607B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E13312CC-6306-4066-B5C9-F7B096465CC9}
+	EndGlobalSection
+EndGlobal
