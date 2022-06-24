@@ -1,6 +1,6 @@
 ﻿namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
 {
-    partial class Form1
+    partial class FillOrCancelForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -101,6 +101,7 @@
             this.btnCancelOrder.TabIndex = 6;
             this.btnCancelOrder.Text = "Скасувати замовлення";
             this.btnCancelOrder.UseVisualStyleBackColor = true;
+            this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
             // 
             // btnFillOrder
             // 
@@ -110,6 +111,7 @@
             this.btnFillOrder.TabIndex = 7;
             this.btnFillOrder.Text = "Створити замовлення";
             this.btnFillOrder.UseVisualStyleBackColor = true;
+            this.btnFillOrder.Click += new System.EventHandler(this.btnFillOrder_Click);
             // 
             // btnFinishUpdates
             // 
@@ -119,8 +121,9 @@
             this.btnFinishUpdates.TabIndex = 8;
             this.btnFinishUpdates.Text = "Завершити";
             this.btnFinishUpdates.UseVisualStyleBackColor = true;
+            this.btnFinishUpdates.Click += new System.EventHandler(this.btnFinishUpdates_Click);
             // 
-            // Form1
+            // Navigation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,7 +137,7 @@
             this.Controls.Add(this.btnFindByOrderID);
             this.Controls.Add(this.txtOrderID);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "Navigation";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerOrders)).EndInit();
             this.ResumeLayout(false);

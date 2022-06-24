@@ -1,6 +1,6 @@
 ﻿namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
 {
-    partial class FillOrCancel
+    partial class NavigationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@
             this.btnGoToAdd.TabIndex = 0;
             this.btnGoToAdd.Text = "Додати аккаунт";
             this.btnGoToAdd.UseVisualStyleBackColor = false;
+            this.btnGoToAdd.Click += new System.EventHandler(this.btnGoToAdd_Click);
             // 
             // btnGoToFillOrCancel
             // 
@@ -53,6 +54,7 @@
             this.btnGoToFillOrCancel.TabIndex = 1;
             this.btnGoToFillOrCancel.Text = "Створити або скасувати замовлення";
             this.btnGoToFillOrCancel.UseVisualStyleBackColor = false;
+            this.btnGoToFillOrCancel.Click += new System.EventHandler(this.btnGoToFillOrCancel_Click);
             // 
             // button3
             // 
@@ -63,6 +65,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Вихід";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -74,7 +77,7 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Що ви хочете зробити?";
             // 
-            // FillOrCancel
+            // NavigationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,7 +86,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnGoToFillOrCancel);
             this.Controls.Add(this.btnGoToAdd);
-            this.Name = "FillOrCancel";
+            this.Name = "NavigationForm";
             this.Text = "FillOrCancel";
             this.ResumeLayout(false);
             this.PerformLayout();

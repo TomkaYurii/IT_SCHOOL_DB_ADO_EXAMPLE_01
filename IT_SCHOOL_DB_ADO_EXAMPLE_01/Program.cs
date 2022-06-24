@@ -17,7 +17,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Navigation());
+            Application.Run(new NavigationForm());
         }
     }
 }

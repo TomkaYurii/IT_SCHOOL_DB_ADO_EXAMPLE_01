@@ -1,6 +1,6 @@
 ﻿namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
 {
-    partial class NewCustomer
+    partial class NewCustomerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.grbRegister = new System.Windows.Forms.GroupBox();
+            this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
-            this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpOrderDate = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numOrderAmount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numOrderAmount = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dtpOrderDate = new System.Windows.Forms.DateTimePicker();
             this.btnPlaceOrder = new System.Windows.Forms.Button();
             this.btnAddAnotherAccount = new System.Windows.Forms.Button();
             this.btnAddFinish = new System.Windows.Forms.Button();
@@ -60,6 +60,14 @@
             this.grbRegister.TabIndex = 0;
             this.grbRegister.TabStop = false;
             this.grbRegister.Text = "Створити аккаунт";
+            // 
+            // txtCustomerID
+            // 
+            this.txtCustomerID.Location = new System.Drawing.Point(200, 109);
+            this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.ReadOnly = true;
+            this.txtCustomerID.Size = new System.Drawing.Size(315, 27);
+            this.txtCustomerID.TabIndex = 3;
             // 
             // label2
             // 
@@ -87,14 +95,6 @@
             this.txtCustomerName.Size = new System.Drawing.Size(315, 27);
             this.txtCustomerName.TabIndex = 0;
             // 
-            // txtCustomerID
-            // 
-            this.txtCustomerID.Location = new System.Drawing.Point(200, 109);
-            this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.ReadOnly = true;
-            this.txtCustomerID.Size = new System.Drawing.Size(315, 27);
-            this.txtCustomerID.TabIndex = 3;
-            // 
             // btnCreateAccount
             // 
             this.btnCreateAccount.Location = new System.Drawing.Point(570, 51);
@@ -103,6 +103,7 @@
             this.btnCreateAccount.TabIndex = 1;
             this.btnCreateAccount.Text = "Створити акканут";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
+            this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
             // 
             // groupBox1
             // 
@@ -117,6 +118,35 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Створити замовлення";
+            // 
+            // dtpOrderDate
+            // 
+            this.dtpOrderDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpOrderDate.Location = new System.Drawing.Point(200, 104);
+            this.dtpOrderDate.Name = "dtpOrderDate";
+            this.dtpOrderDate.Size = new System.Drawing.Size(315, 27);
+            this.dtpOrderDate.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 109);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 20);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Дата замовлення";
+            // 
+            // numOrderAmount
+            // 
+            this.numOrderAmount.Location = new System.Drawing.Point(200, 41);
+            this.numOrderAmount.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numOrderAmount.Name = "numOrderAmount";
+            this.numOrderAmount.Size = new System.Drawing.Size(315, 27);
+            this.numOrderAmount.TabIndex = 3;
             // 
             // label3
             // 
@@ -136,35 +166,6 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Кількість";
             // 
-            // numOrderAmount
-            // 
-            this.numOrderAmount.Location = new System.Drawing.Point(200, 41);
-            this.numOrderAmount.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.numOrderAmount.Name = "numOrderAmount";
-            this.numOrderAmount.Size = new System.Drawing.Size(315, 27);
-            this.numOrderAmount.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 109);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Дата замовлення";
-            // 
-            // dtpOrderDate
-            // 
-            this.dtpOrderDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpOrderDate.Location = new System.Drawing.Point(200, 104);
-            this.dtpOrderDate.Name = "dtpOrderDate";
-            this.dtpOrderDate.Size = new System.Drawing.Size(315, 27);
-            this.dtpOrderDate.TabIndex = 5;
-            // 
             // btnPlaceOrder
             // 
             this.btnPlaceOrder.Location = new System.Drawing.Point(570, 237);
@@ -173,6 +174,7 @@
             this.btnPlaceOrder.TabIndex = 5;
             this.btnPlaceOrder.Text = "Створити замовлення";
             this.btnPlaceOrder.UseVisualStyleBackColor = true;
+            this.btnPlaceOrder.Click += new System.EventHandler(this.btnPlaceOrder_Click);
             // 
             // btnAddAnotherAccount
             // 
@@ -182,6 +184,7 @@
             this.btnAddAnotherAccount.TabIndex = 6;
             this.btnAddAnotherAccount.Text = "Додати інший аккаунт";
             this.btnAddAnotherAccount.UseVisualStyleBackColor = true;
+            this.btnAddAnotherAccount.Click += new System.EventHandler(this.btnAddAnotherAccount_Click);
             // 
             // btnAddFinish
             // 
@@ -191,8 +194,9 @@
             this.btnAddFinish.TabIndex = 7;
             this.btnAddFinish.Text = "Завершити";
             this.btnAddFinish.UseVisualStyleBackColor = true;
+            this.btnAddFinish.Click += new System.EventHandler(this.btnAddFinish_Click);
             // 
-            // NewCustomer
+            // NewCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -203,7 +207,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCreateAccount);
             this.Controls.Add(this.grbRegister);
-            this.Name = "NewCustomer";
+            this.Name = "NewCustomerForm";
             this.Text = "NewCustomer";
             this.grbRegister.ResumeLayout(false);
             this.grbRegister.PerformLayout();
