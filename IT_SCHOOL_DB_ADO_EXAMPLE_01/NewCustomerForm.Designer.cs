@@ -77,7 +77,6 @@
             this.label2.Size = new System.Drawing.Size(114, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "ID користувача";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
