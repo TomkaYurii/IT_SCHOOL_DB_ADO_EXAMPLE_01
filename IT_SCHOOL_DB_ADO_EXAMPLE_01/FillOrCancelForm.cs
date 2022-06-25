@@ -19,33 +19,33 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
             InitializeComponent();
         }
 
-        // Storage for the order ID value.
+        // поле для збереження значення ID поля замовлення
         private int parsedOrderID;
 
         /// <summary>
-        /// Verifies that an order ID is present and contains valid characters.
+        /// Перевіряємо що ID замолення внесено в поле та задовольняє всім умовам
         /// </summary>
         /// <returns></returns>
         private bool IsOrderIDValid()
         {
-            // Check for input in the Order ID text box.
+            // Перевіряємо що ID в полі для введення не є пустим
             if (txtOrderID.Text == "")
             {
                 MessageBox.Show("Визначте будь-ласка ID-замовлення");
                 return false;
             }
-            //
-            // Check for characters other than integers.
+   
+            // Перевіряємо що в полі ми вводимо цифри
             else if (Regex.IsMatch(txtOrderID.Text, @"^\D*$"))
             {
-                // Show message and clear input.
+                // виводимо повідомлення та очищаємо поле від некоректного виведення
                 MessageBox.Show("ID повинен містити тільки цифри");
                 txtOrderID.Clear();
                 return false;
             }
             else
             {
-                // Convert the text in the text box to an integer to send to the database.
+                // конвертуємо текст в полі для введення в Int для відправки в базу даних
                 parsedOrderID = Int32.Parse(txtOrderID.Text);
                 return true;
             }
@@ -58,33 +58,40 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
             {
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnString))
                 {
-                    // Define a t-SQL query string that has a parameter for orderID.
+                    // Визначаємо t-SQL запит. Сам запит в якості параметра приймає orderID
                     const string sql = "SELECT * FROM Sales.Orders WHERE orderID = @orderID";
 
-                    // Create a SqlCommand object.
+                    // Створємо об'єкт команди необхідний для виконання запиту
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                     {
-                        // Define the @orderID parameter and set its value.
+                        // визначаємо @orderID в якості вхідного параметру виществореного запиту у змінній sql
                         sqlCommand.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int));
                         sqlCommand.Parameters["@orderID"].Value = parsedOrderID;
 
                         try
                         {
                             connection.Open();
+                            
+                            // 1) - ВІД'ЄДНАНИЙ РЕЖИМ (ПІДКЛЮЧАЄМОСЬ, ЗАБИРАЄМО ВСЕ, ВІДКЛЮЧАЄМОСЬ, ПРАЦЮЄМО ІЗ ДАНИМИ)
 
-                            // Run the query by calling ExecuteReader().
+                            // БУДЕМО РЕАЛЫЗОВУВАТИ
+
+                            // 2) - ПІДКЛЮЧЕНИЙ РЕЖИМ (ПІДКЛЮЧИЛИСЬ І ПРАЦЮЄМО ІЗ БД НАПРЯМУ)
+                            // РОЗБЕРЕМО
+
+                            // Запускаємо на виконання вищесконфігурований запит на основі команди ExecuteReader()
                             using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                             {
-                                // Create a data table to hold the retrieved data.
+                                // Створення таблиці даних
                                 DataTable dataTable = new DataTable();
 
-                                // Load the data from SqlDataReader into the data table.
+                                // Заливаємо у DataTable (спосіб представлення таблиці через клас) всі дані через SqlDataReader
                                 dataTable.Load(dataReader);
 
-                                // Display the data from the data table in the data grid view.
+                                // Відображаємо дані із dataTable у елементі DataGridView на самій формі
                                 this.dgvCustomerOrders.DataSource = dataTable;
 
-                                // Close the SqlDataReader.
+                                // Закриваємо SqlDataReader
                                 dataReader.Close();
                             }
                         }
@@ -94,7 +101,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
                         }
                         finally
                         {
-                            // Close the connection.
+                            // Закриваємо підключення
                             connection.Close();
                         }
                     }
@@ -106,24 +113,23 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
         {
             if (IsOrderIDValid())
             {
-                // Create the connection.
+                // Створюємо підключення
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnString))
                 {
-                    // Create the SqlCommand object and identify it as a stored procedure.
+                    // Створюємо команду SqlCommand та ідентифікуємо збережувану процедуру на виконання
                     using (SqlCommand sqlCommand = new SqlCommand("Sales.uspCancelOrder", connection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                        // Add the order ID input parameter for the stored procedure.
+                        //додаємо ID замовлення в якості вхідного параметру збережуваної процедури
                         sqlCommand.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int));
                         sqlCommand.Parameters["@orderID"].Value = parsedOrderID;
 
                         try
                         {
-                            // Open the connection.
+                            // Відкриваємо підключення
                             connection.Open();
-
-                            // Run the command to execute the stored procedure.
+                            // Запускаємо на виконання збережувану процеудуру
                             sqlCommand.ExecuteNonQuery();
                         }
                         catch
@@ -132,7 +138,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
                         }
                         finally
                         {
-                            // Close connection.
+                            // Закриваємо підключення
                             connection.Close();
                         }
                     }
@@ -145,19 +151,19 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
         {
             if (IsOrderIDValid())
             {
-                // Create the connection.
+                // Створюємо підключення
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnString))
                 {
-                    // Create command and identify it as a stored procedure.
+                    // Створюємо команду та ідентифікуємо збережувану процедуру для виконання
                     using (SqlCommand sqlCommand = new SqlCommand("Sales.uspFillOrder", connection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                        // Add the order ID input parameter for the stored procedure.
+                        // додаємо ID замовлення в якості вхідного параметру збережуваної процедури
                         sqlCommand.Parameters.Add(new SqlParameter("@orderID", SqlDbType.Int));
                         sqlCommand.Parameters["@orderID"].Value = parsedOrderID;
 
-                        // Add the filled date input parameter for the stored procedure.
+                        // додаємо дату підтвердження замовлення в якості вхідного параметру збережуваної процедури
                         sqlCommand.Parameters.Add(new SqlParameter("@FilledDate", SqlDbType.DateTime, 8));
                         sqlCommand.Parameters["@FilledDate"].Value = dtpFillDate.Value;
 
@@ -165,7 +171,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
                         {
                             connection.Open();
 
-                            // Execute the stored procedure.
+                            // запускаємо збережувану процедуру
                             sqlCommand.ExecuteNonQuery();
                         }
                         catch
@@ -174,7 +180,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
                         }
                         finally
                         {
-                            // Close the connection.
+                            // закриваємо відключення
                             connection.Close();
                         }
                     }

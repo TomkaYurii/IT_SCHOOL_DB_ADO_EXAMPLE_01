@@ -9,7 +9,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// Точка входу у додаток
         /// </summary>
         [STAThread]
         static void Main()

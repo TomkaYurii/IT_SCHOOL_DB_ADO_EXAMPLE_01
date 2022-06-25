@@ -16,12 +16,12 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
             InitializeComponent();
         }
 
-        // Storage for IDENTITY values returned from database.
-        private int parsedCustomerID;
+        // поля для збереження ID із таблиць бази даних
+        private int parsedCustomerID; 
         private int orderID;
 
         /// <summary>
-        /// Verifies that the customer name text box is not empty.
+        /// Перевіряємо чи поле для введення імені користувача не є пустим
         /// </summary>
         /// <returns></returns>
         private bool IsCustomerNameValid()
@@ -38,18 +38,18 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
         }
 
         /// <summary>
-        /// Verifies that a customer ID and order amount have been provided.
+        /// Перевіряємо щоб ID покупця та замовлення було введено
         /// </summary>
         /// <returns></returns>
         private bool IsOrderDataValid()
         {
-            // Verify that CustomerID is present.
+            // перевіряємо щоб CustomerID було веедено
             if (txtCustomerID.Text == "")
             {
                 MessageBox.Show("Будь-ласка створіть спочатку аккаунт перед створенням замовлення.");
                 return false;
             }
-            // Verify that Amount isn't 0.
+            //перевіряємо щоб кількість одиниць товару при замовленні біла більше 0.
             else if ((numOrderAmount.Value < 1))
             {
                 MessageBox.Show("Будь-ласка визначіть кількість");
@@ -57,13 +57,13 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
             }
             else
             {
-                // Order can be submitted.
+                // якщо замовлення створене.
                 return true;
             }
         }
 
         /// <summary>
-        /// Clears the form data.
+        /// чистимо форму
         /// </summary>
         private void ClearForm()
         {
@@ -75,7 +75,7 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
         }
 
         /// <summary>
-        /// Creates a new customer by calling the Sales.uspNewCustomer stored procedure.
+        /// Створюємо нового покупця шляхом виклику збережуваної процедури Sales.uspNewCustomer із бази даних
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -83,19 +83,19 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
         {
             if (IsCustomerNameValid())
             {
-                // Create the connection.
+                // створення подключення.
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnString))
                 {
-                    // Create a SqlCommand, and identify it as a stored procedure.
+                    // створення SqlCommand, ідентифікація зебережуваної процедури.
                     using (SqlCommand sqlCommand = new SqlCommand("Sales.uspNewCustomer", connection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                        // Add input parameter for the stored procedure and specify what to use as its value.
+                        // додаємо вхіднрий параметр (він використовується збережуваною процедурою) і визначає виличину яку ми передамо в базу
                         sqlCommand.Parameters.Add(new SqlParameter("@CustomerName", SqlDbType.NVarChar, 40));
                         sqlCommand.Parameters["@CustomerName"].Value = txtCustomerName.Text;
 
-                        // Add the output parameter.
+                        // додаємо вихідний параметр
                         sqlCommand.Parameters.Add(new SqlParameter("@CustomerID", SqlDbType.Int));
                         sqlCommand.Parameters["@CustomerID"].Direction = ParameterDirection.Output;
 
@@ -103,13 +103,13 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
                         {
                             connection.Open();
 
-                            // Run the stored procedure.
+                            // запускаємо збережувану процедуру
                             sqlCommand.ExecuteNonQuery();
 
-                            // Customer ID is an IDENTITY value from the database.
+                            // Customer ID що повертається із бази даних
                             this.parsedCustomerID = (int)sqlCommand.Parameters["@CustomerID"].Value;
 
-                            // Put the Customer ID value into the read-only text box.
+                            // встановлюємо значення Customer ID у відповідне поле форми
                             this.txtCustomerID.Text = Convert.ToString(parsedCustomerID);
                         }
                         catch
@@ -126,53 +126,53 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
         }
 
         /// <summary>
-        /// Calls the Sales.uspPlaceNewOrder stored procedure to place an order.
+        /// Викликаємо збережувану процедуру Sales.uspPlaceNewOrder для створення замовлення
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
-            // Ensure the required input is present.
+            // валідуємо присутність необхідних даних
             if (IsOrderDataValid())
             {
-                // Create the connection.
+                //створюємо підключення
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnString))
                 {
-                    // Create SqlCommand and identify it as a stored procedure.
+                    // створємо SqlCommand та ідентифікуємо збережувану процедуру що повинна виконатись
                     using (SqlCommand sqlCommand = new SqlCommand("Sales.uspPlaceNewOrder", connection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                        // Add the @CustomerID input parameter, which was obtained from uspNewCustomer.
+                        // додаємо @CustomerID в якості взідного параметру,  which was obtained from uspNewCustomer.
                         sqlCommand.Parameters.Add(new SqlParameter("@CustomerID", SqlDbType.Int));
                         sqlCommand.Parameters["@CustomerID"].Value = this.parsedCustomerID;
 
-                        // Add the @OrderDate input parameter.
+                        // Додаємо @OrderDate в якості вхідного параметру збережуваної процедури
                         sqlCommand.Parameters.Add(new SqlParameter("@OrderDate", SqlDbType.DateTime, 8));
                         sqlCommand.Parameters["@OrderDate"].Value = dtpOrderDate.Value;
 
-                        // Add the @Amount order amount input parameter.
+                        // Додаємо @Amount в яксоті вхідного параметру збережуваної процедури
                         sqlCommand.Parameters.Add(new SqlParameter("@Amount", SqlDbType.Int));
                         sqlCommand.Parameters["@Amount"].Value = numOrderAmount.Value;
 
-                        // Add the @Status order status input parameter.
-                        // For a new order, the status is always O (open).
+                        // Додаємо @Status в якості вхідного параметру процедури, це статус замовлення
+                        // Для нового замовлення це - О (open).
                         sqlCommand.Parameters.Add(new SqlParameter("@Status", SqlDbType.Char, 1));
                         sqlCommand.Parameters["@Status"].Value = "O";
 
-                        // Add the return value for the stored procedure, which is  the order ID.
+                        // додаємо повертаєму величину в якості відповідного параметру, по факту це ID.
                         sqlCommand.Parameters.Add(new SqlParameter("@RC", SqlDbType.Int));
                         sqlCommand.Parameters["@RC"].Direction = ParameterDirection.ReturnValue;
 
                         try
                         {
-                            //Open connection.
+                            //відкривємо підключення
                             connection.Open();
 
-                            // Run the stored procedure.
+                            // запускаємо на виконання збережувану процедуру
                             sqlCommand.ExecuteNonQuery();
 
-                            // Display the order number.
+                            // відображаємо номер замовлення та статус
                             this.orderID = (int)sqlCommand.Parameters["@RC"].Value;
                             MessageBox.Show("Замовлення № " + this.orderID + " було створено.");
                         }

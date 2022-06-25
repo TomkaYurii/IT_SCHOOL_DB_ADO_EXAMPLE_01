@@ -100,7 +100,7 @@
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(191, 119);
             this.btnCreateAccount.TabIndex = 1;
-            this.btnCreateAccount.Text = "Створити акканут";
+            this.btnCreateAccount.Text = "Створення аккаунту користувача";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
             this.btnCreateAccount.Click += new System.EventHandler(this.btnCreateAccount_Click);
             // 
