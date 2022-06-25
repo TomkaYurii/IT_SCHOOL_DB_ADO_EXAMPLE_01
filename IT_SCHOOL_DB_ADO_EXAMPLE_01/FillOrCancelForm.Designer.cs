@@ -110,7 +110,7 @@
             this.btnFillOrder.Name = "btnFillOrder";
             this.btnFillOrder.Size = new System.Drawing.Size(231, 29);
             this.btnFillOrder.TabIndex = 7;
-            this.btnFillOrder.Text = "Створити замовлення";
+            this.btnFillOrder.Text = "Скасувати замовлення";
             this.btnFillOrder.UseVisualStyleBackColor = true;
             this.btnFillOrder.Click += new System.EventHandler(this.btnFillOrder_Click);
             // 

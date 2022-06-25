@@ -103,6 +103,8 @@ namespace IT_SCHOOL_DB_ADO_EXAMPLE_01
                             connection.Open();
 
                             sqlCommand.ExecuteNonQuery();
+
+                            MessageBox.Show("Операція скасування замовлення успішно завершена. Оновіть");
                         }
                         catch
                         {
