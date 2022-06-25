@@ -64,6 +64,7 @@
             this.btnFindByOrderID.TabIndex = 2;
             this.btnFindByOrderID.Text = "Знайти замовлення";
             this.btnFindByOrderID.UseVisualStyleBackColor = true;
+            this.btnFindByOrderID.Click += new System.EventHandler(this.btnFindByOrderID_Click);
             // 
             // label2
             // 
@@ -123,7 +124,7 @@
             this.btnFinishUpdates.UseVisualStyleBackColor = true;
             this.btnFinishUpdates.Click += new System.EventHandler(this.btnFinishUpdates_Click);
             // 
-            // Navigation
+            // FillOrCancelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,7 +138,7 @@
             this.Controls.Add(this.btnFindByOrderID);
             this.Controls.Add(this.txtOrderID);
             this.Controls.Add(this.label1);
-            this.Name = "Navigation";
+            this.Name = "FillOrCancelForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerOrders)).EndInit();
             this.ResumeLayout(false);
