@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IT_SCHOOL_DB_ADO_EXAMPLE_01.Properties {
+namespace IT_SCHOOL_DB_ADO_EXAMPLE_02.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
